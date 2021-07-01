@@ -1,0 +1,20 @@
+<h1 class="display-4 text-center bg-light">Recruit Desk</h1>
+<main class="container d-flex justify-content-center">
+    <section>
+        <h4 class="text-center">Recruiter Login</h4>
+        <form #login="ngForm" (ngSubmit)="authenticate()">
+            <div class="form-group">
+                <input type="email" class="form-control" name="email" id="email"  [(ngModel)]="email" placeholder="Email" required  (focus)="clearMessage()" autofocus>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" name="password" id="password"  [(ngModel)]="password" placeholder="Password" required (focus)="clearMessage()">
+            </div>
+            <div class="form-group">
+                <p id="errorText" class="text-danger">{{ errorText }}</p>
+            </div>
+            <button [disabled]="login.form.invalid" class="btn btn-warning btn-block">Login</button>
+        </form>
+    </section>
+</main>
+<!-- <script src="../../service/RecruiterManager.js"></script>
+<script src="../../assets/js/RecruiterLogin.js"></script> -->

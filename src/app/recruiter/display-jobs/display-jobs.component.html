@@ -1,0 +1,27 @@
+<app-sidenav></app-sidenav>
+<main class="content">
+    <h1 class="display-4 text-center">Recruit Desk</h1>
+    <h5>Available Jobs</h5>
+    <div class="form-group">
+        <input type="text" name="search" id="search" class="form-control w-25" placeholder="Search Job" (input)="searchJob()" [(ngModel)]="jobSearch">
+    </div>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Job Id</th>
+                <th scope="col">Job Title</th>
+                <th scope="col">Location</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let job of displayJobs">
+                <td>{{job.id}}</td>
+                <td>{{job.jobtitle}}</td>
+                <td>{{job.location}}</td>
+                <td><button routerLink="/recruiter/jobs/{{ job.id }}" class="btn btn-warning">More Details</button></td>
+            </tr>
+        </tbody>
+    </table>
+    <a routerLink="/recruiter/openings" class="btn btn-primary">Back</a>
+</main>

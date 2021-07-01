@@ -1,0 +1,61 @@
+<app-sidenav></app-sidenav>
+<main class="content">
+    <h1 class="display-4 text-center">Recruit Desk</h1>
+    <h5>Update Job Post</h5>
+    <form #updateForm="ngForm" *ngIf="job != null" (submit)="updatePost()">
+        <div class="form-group">
+            <label for="jobTitle">Job Posting Headline</label>
+            <input type="text" name="jobTitle" id="jobTitle" class="form-control" [(ngModel)]="job.jobtitle" placeholder="Job Posting Headline" disabled>
+        </div>
+        <div class="form-group">
+            <label for="jobType">Employment Type</label>
+            <select name="jobType" id="jobType" class="form-control" [(ngModel)]="job.jobtype" required>
+                <option value="Full">Full Time</option>
+                <option value="Part">Part Time</option>
+            </select>
+        </div>
+        <label>Job Description</label>
+        <div class="form-group">
+            <textarea name="description" id="description" class="form-control" [(ngModel)]="job.description" cols="100" rows="10" placeholder="" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="skills">Key Skills</label>
+            <input type="text" name="skills" id="skills" class="form-control" [(ngModel)]="job.skills" placeholder="Skills Required" required>
+        </div>
+        <div class="form-group">
+            <label for="">Work Experience (Years)</label>
+            <input type="number" name="minYears" id="minYears" class="form-control w-25 d-inline" [(ngModel)]="job.minyears" placeholder="Min" required>&nbsp;
+            <input type="number" name="maxYears" id="maxYears" class="form-control w-25 d-inline" [(ngModel)]="job.maxyears" placeholder="Max" required>
+        </div>
+        <div class="form-group">
+            <label for="">Annual Salary Range</label>
+            <input type="number" name="minSalary" id="minSalary" min="200000" class="form-control w-25 d-inline" [(ngModel)]="job.minsalary" placeholder="Min" required>&nbsp;
+            <input type="number" name="maxSalary" id="maxSalary" min="200000" class="form-control w-25 d-inline" [(ngModel)]="job.maxsalary" placeholder="Max" required>
+        </div>
+        <div class="form-group">
+            <label for="location">Location</label>
+            <input type="text" name="location" id="location" class="form-control w-25" [(ngModel)]="job.location" placeholder="Location" disabled>
+        </div>
+        <div class="form-group">
+            <label for="noOfVacancy">No of Vacancies</label>
+            <input type="number" name="noOfVacancy" id="noOfVacancy" class="form-control w-25" [(ngModel)]="job.vacancy" placeholder="No of Vacancy" min="1" max="100" required>
+        </div>
+        <div class="form-group">
+            <label for="qualification">Educational Qualification</label>
+            <select name="qualification" id="qualification" class="form-control w-25" [(ngModel)]="job.qualification" required>
+                <option value="disabled" disabled>Select an option</option>
+                <option value="BE">Bachelor of Engineering</option>
+                <option value="ME">Master of Engineering</option>
+                <option value="Arts">Arts</option>
+                <option value="Business">Business Administration</option>
+                <option value="Any">Any Degree</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="endDate">End Date</label>
+            <input type="date" name="endDate" id="endDate" min="{{ today }}" class="form-control w-25" [(ngModel)]="job.end_date" required>
+        </div>
+        <p id="errorText" class="text-danger">{{ errorText }}</p>
+        <button [disabled]="updateForm.invalid" id="updateBtn" class="btn btn-secondary">Update Job</button>
+    </form>
+</main>

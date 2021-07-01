@@ -1,0 +1,49 @@
+<app-sidenav></app-sidenav>
+<main class="content">
+    <h1 class="display-4 text-center">Recruit Desk</h1>
+    <h5>Job Details</h5>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Criteria</th>
+                <th>Information</th>
+            </tr>
+        </thead>
+        <tbody *ngIf="job != null">
+            <tr><td>Job Posting Headline</td><td>{{ job.jobtitle }}</td></tr>
+            <tr><td>Employment Type</td><td>{{ job.jobtype }}</td></tr>
+            <tr><td>Job Description</td><td><p>{{ job.description }}</p></td></tr>
+            <tr><td>Key Skills</td><td>{{ job.skills }}</td></tr>
+            <tr><td>Work Experience</td><td><span>{{ job.minyears }}</span> To <span>{{ job.maxyears }}</span> Years</td></tr>
+            <tr><td>Annual Salary</td><td><span>{{ job.minsalary }}</span> To <span>{{ job.maxsalary }}</span> INR</td></tr>
+            <tr><td>Location</td><td>{{ job.location }}</td></tr>
+            <tr><td>No of Vacancy</td><td>{{ job.vacancy }}</td></tr>
+            <tr><td>Educational Qualification</td><td>{{ job.qualification }}</td></tr>
+            <tr><td>End Date</td><td>{{ job.end_date }}</td></tr>
+            <tr><td>Status</td><td>{{ status }}</td></tr>
+        </tbody>
+    </table> 
+    <button id="updateBtn" *ngIf="job != null" routerLink="/recruiter/jobs/{{ job.id }}/update" class="btn btn-secondary">Update</button>&nbsp;
+    <button id="deleteBtn" class="btn btn-danger" (click)="deleteJob()">Delete</button>&nbsp;
+    <button class="btn btn-warning" data-toggle="modal" data-target="#exampleModal">Archive</button>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Warning</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Archiving post makes this job post, applications and relevant selected list data unavailable to the application, 
+                    but still available in database. Do you want to continue?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                    <button type="button" class="btn btn-primary" (click)="archivePost()">Yes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

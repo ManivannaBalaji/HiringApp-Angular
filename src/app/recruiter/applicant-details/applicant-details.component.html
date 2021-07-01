@@ -1,0 +1,38 @@
+<app-sidenav></app-sidenav>
+<main class="content">
+    <h1 class="display-4 text-center">Recruit Desk</h1>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Sno</th>
+                <th scope="col">Section</th>
+                <th scope="col">Details</th>
+            </tr>
+        </thead>
+        <tbody *ngIf="displayApplication != null">
+            <tr><th scope="row">1</th><td>Name</td><td>{{ displayApplication.name }}</td></tr>
+            <tr><th scope="row">2</th><td>Email</td><td>{{ displayApplication.email }}</td></tr>
+            <tr><th scope="row">3</th><td>Mobile</td><td>{{ displayApplication.mobile }}</td></tr>
+            <tr><th scope="row">4</th><td>Role</td><td>{{ displayApplication.jobtitle }}</td></tr>
+            <tr><th scope="row">5</th><td>Year of Passing</td><td>{{ displayApplication.yop }}</td></tr>
+            <tr><th scope="row">6</th><td>Work Experience</td><td>{{ displayApplication.experience }} Years</td></tr>
+            <tr><th scope="row">7</th><td>Address</td><td>{{ displayApplication.address }}</td></tr>
+            <tr><th scope="row">8</th><td>Score (0 to 10)</td><td><input id="score" class="form-control w-25" [(ngModel)]="displayApplication.score" type="number" min="0" max="10" placeholder="score"></td></tr>
+            <tr>
+                <th scope="row">9</th>
+                <td>Selection Status</td>
+                <td>
+                    <select name="status" id="status" class="form-control w-25" [(ngModel)]="displayApplication.status">
+                        <option value="pending">Pending</option>
+                        <option value="selected">Selected</option>
+                        <option value="notselected">Not Selected</option>
+                        <option value="hold">Hold</option>
+                    </select>
+                </td>
+            </tr>
+            <tr><th scope="row">10</th><td>Comments</td><td><textarea id="comments" class="form-control" [(ngModel)]="displayApplication.comments" rows="7" cols="100" placeholder="Add comments"></textarea></td></tr>
+        </tbody>
+    </table>
+    <button class="btn btn-secondary" (click)="updateApplication()">Update</button>&nbsp;
+    <button routerLink="/recruiter/applications" class="btn btn-danger">Back</button>
+</main>

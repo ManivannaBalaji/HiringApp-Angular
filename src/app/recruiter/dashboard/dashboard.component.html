@@ -1,0 +1,19 @@
+<app-sidenav></app-sidenav>
+<main class="content">
+    <h1 class="display-4 text-center">Recruit Desk</h1>
+    <h5>Selection Progress</h5>
+    <div *ngIf="jobOffers && jobOffers.length == 0">No Job Found!</div>
+    <section class="row">
+        <div *ngFor="let job of jobOffers" class="card m-3" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">{{job.jobtitle}}</h5>
+                <p class="card-text">No of Vacancy : {{job.vacancy}}</p>
+                <p class="card-text">Selected : {{job.selected}}</p>
+                <p class="card-text">Location : {{job.location}}</p>
+                <div class="progress">
+                    <div class="progress-bar" [style.width]="(job.selected/job.vacancy*100) + '%'" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
