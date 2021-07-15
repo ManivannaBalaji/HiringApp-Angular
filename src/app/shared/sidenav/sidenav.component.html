@@ -1,0 +1,10 @@
+<nav class="sidebar">
+    <a class="user" routerLink="/recruiter/dashboard"><i class="far fa-user"></i> {{ userName }}</a>
+    <hr>
+    <a routerLink="/recruiter/dashboard"><i class="far fa-folder"></i> Dashboard</a>
+    <a routerLink="/recruiter/openings"><i class="far fa-edit"></i> Openings</a>
+    <a routerLink="/recruiter/applications"><i class="far fa-comment-alt"></i> Applications</a>
+    <a routerLink="/recruiter/selectedlist"><i class="far fa-check-circle"></i> Selected List</a>
+    <a routerLink="/recruiter/feedback"><i class="far fa-comment-dots"></i> Feedbacks</a>
+    <a id="logout" (click)="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+</nav>

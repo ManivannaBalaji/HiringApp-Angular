@@ -1,0 +1,16 @@
+hr{
+    border-color: white;
+}
+
+#logout{
+    color: white;
+}
+
+#logout:hover{
+    color: black;
+}
+
+.user{
+    background-color: white;
+    color: black;
+}

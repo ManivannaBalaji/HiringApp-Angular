@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { JobService } from '../../service/job.service';
-import {DataValidatorService} from '../../utils/data-validator.service';
+import { DataValidatorService } from '../../utils/data-validator.service';
 
 @Component({
   selector: 'app-view-job-details',
@@ -10,11 +10,12 @@ import {DataValidatorService} from '../../utils/data-validator.service';
 })
 export class ViewJobDetailsComponent implements OnInit {
 
-  jobId : number;
-  job : any;
-  status : string = '';
+  jobId: number;
+  job: any;
+  status: string = '';
+  isAuthorizedUser: boolean = false;
 
-  constructor(private jobService: JobService, private route : ActivatedRoute, private router : Router, private validator : DataValidatorService) {
+  constructor(private jobService: JobService, private route: ActivatedRoute, private router: Router, private validator: DataValidatorService) {
     this.jobId = this.route.snapshot.params['id'];
   }
 
@@ -26,17 +27,18 @@ export class ViewJobDetailsComponent implements OnInit {
     this.jobService.getJobOffer(id).subscribe(res => {
       this.job = res;
       let isJobExpired = this.validator.checkExpireDate(this.job.end_date);
-      if(isJobExpired){
+      if (isJobExpired) {
         this.status = "Closed";
-      } else{
+      } else {
         this.status = "Opened";
       }
+      this.authorizeUser();
     }, err => {
       console.log(err);
     });
   }
 
-  deleteJob(){
+  deleteJob() {
     this.jobService.removeJobOffer(this.jobId).subscribe(res => {
       alert("Job successfully deleted");
       this.router.navigateByUrl("/recruiter/jobs");
@@ -45,11 +47,20 @@ export class ViewJobDetailsComponent implements OnInit {
     });
   }
 
-  archivePost(){
+  archivePost() {
     this.jobService.archivePost(this.jobId).subscribe(res => {
       alert("Job successfully archived");
     }, err => {
       alert("Error try again");
     });
+  }
+
+  authorizeUser() {
+    let loginData: any = localStorage.getItem('LOGGED_IN_USER');
+    let loggedUser = JSON.parse(loginData).name;
+    let createdUser = this.job.created_by;
+    if (loggedUser === createdUser) {
+      this.isAuthorizedUser = true;
+    }
   }
 }

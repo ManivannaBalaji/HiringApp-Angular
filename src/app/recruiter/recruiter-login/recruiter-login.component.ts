@@ -32,7 +32,9 @@ export class RecruiterLoginComponent implements OnInit {
         "password": this.password
     };
     this.recruiterService.authenticate(data).subscribe(res => {
-      localStorage.setItem('LOGGED_IN_USER', JSON.stringify(res));
+      let data : any = res;
+      data.type = "R";
+      localStorage.setItem('LOGGED_IN_USER', JSON.stringify(data));
       this.router.navigateByUrl("recruiter/dashboard");
     }, err => {
       this.errorText = err.error.errorMessage;

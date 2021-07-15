@@ -38,7 +38,7 @@ export class UpdateJobPostComponent implements OnInit {
     delete updatedJob.location;
     if(this.validateData(updatedJob)){
       this.jobService.updateJobOffer(this.jobId, updatedJob).subscribe(res => {
-        alert("Job updated succssfully");
+        alert("Job updated successfully");
       }, err => {
         this.errorText = err.error.errorMessage;
       })

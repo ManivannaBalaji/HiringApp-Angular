@@ -43,4 +43,26 @@ export class SelectionService {
     let url = "http://localhost:3000/api/selected/score/" + id;
     return this.httpClient.put(url, data);
   }
+
+  /**
+   * Order selected list by ascending order
+   * @param selectedList 
+   */
+  orderByAscending(selectedList : any){
+    selectedList.sort(function(a : any, b : any){
+        return ((parseInt(a.score) < parseInt(b.score)) ? -1 : ((parseInt(a.score) > parseInt(b.score)) ? 1 : 0));
+    });
+    return selectedList;
+  }
+
+  /**
+   * Order selected list by descending order
+   * @param selectedList 
+   */
+  orderByDescending(selectedList : any){
+    selectedList.sort(function(a : any, b : any){
+        return ((parseInt(a.score) > parseInt(b.score)) ? -1 : ((parseInt(a.score) < parseInt(b.score)) ? 1 : 0));
+    });
+    return selectedList;
+  }
 }

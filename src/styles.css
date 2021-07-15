@@ -40,6 +40,8 @@ body{
     display: block;
     color: white;
     padding: 16px;
+    margin: 2px;
+    border-radius: 5px; 
     text-decoration: none;
   }
   

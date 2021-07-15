@@ -21,11 +21,12 @@
             <tr><td>Educational Qualification</td><td>{{ job.qualification }}</td></tr>
             <tr><td>End Date</td><td>{{ job.end_date }}</td></tr>
             <tr><td>Status</td><td>{{ status }}</td></tr>
+            <tr><td>Created By</td><td>{{ job.created_by }}</td></tr>
         </tbody>
     </table> 
-    <button id="updateBtn" *ngIf="job != null" routerLink="/recruiter/jobs/{{ job.id }}/update" class="btn btn-secondary">Update</button>&nbsp;
-    <button id="deleteBtn" class="btn btn-danger" (click)="deleteJob()">Delete</button>&nbsp;
-    <button class="btn btn-warning" data-toggle="modal" data-target="#exampleModal">Archive</button>
+    <button id="updateBtn" *ngIf="job != null && isAuthorizedUser" routerLink="/recruiter/jobs/{{ job.id }}/update" class="btn btn-secondary">Update</button>&nbsp;
+    <button id="deleteBtn" *ngIf="isAuthorizedUser" class="btn btn-danger" (click)="deleteJob()">Delete</button>&nbsp;
+    <button *ngIf="isAuthorizedUser" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal">Archive</button>
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">

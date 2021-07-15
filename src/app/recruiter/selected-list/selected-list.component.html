@@ -3,16 +3,15 @@
     <h1 class="display-4 text-center">Recruit Desk</h1>
     <Label>Sort By</Label>
     <div class="form-group">
-        <select name="order" id="order" class="form-control w-25 d-inline">
-            <option value="disabled" disabled>Please select an option</option>
+        <select name="order" id="order" [(ngModel)]="sortOrder" class="form-control w-25 d-inline">
+            <option disabled>Please select an option</option>
             <option value="ascending">Lower to Higher Score</option>
             <option value="descending">Higher to Lower Score</option>
         </select>&nbsp;
-        <input type="text" name="job_search" id="job_search" class="form-control w-25 d-inline" placeholder="Search Job">&nbsp;
-        <input type="text" name="job_location" id="job_location" class="form-control w-25 d-inline" placeholder="Search Location">&nbsp;
-        <button id="sortBtn" class="btn btn-primary d-inline">Apply</button>
+        <input type="text" name="job_search" id="job_search"  [(ngModel)]="searchJob" class="form-control w-25 d-inline" placeholder="Search Job">&nbsp;
+        <input type="text" name="job_location" id="job_location"  [(ngModel)]="searchLocation" class="form-control w-25 d-inline" placeholder="Search Location">&nbsp;
     </div>
-    <button class="btn btn-success" onclick="generateSheet()">Export as Spreadsheet</button>
+    <button class="btn btn-success" (click)="generateSheet()">Export as Spreadsheet</button>
     <table id="selectedTable" class="table table-hover">
         <thead>
             <th scope="col">Application Id</th>
@@ -24,14 +23,14 @@
             <th scope="col" class="noExport">Actions</th>
         </thead>
         <tbody id="table-content">
-            <tr *ngFor="let selected of selectedList">
+            <tr *ngFor="let selected of selectedList | filterSelectedList: sortOrder:searchJob:searchLocation">
                 <td scope="row">{{ selected.applicationid }}</td>
                 <td scope="row">{{ selected.name }}</td>
                 <td scope="row">{{ selected.jobtitle }}</td>
                 <td scope="row">{{ selected.score }}</td>
                 <td scope="row">{{ selected.email }}</td>
                 <td scope="row">{{ selected.location }}</td>
-                <td scope="row"><button routerLink="/recruiter/applications/{{ selected.applicationid }}" class="btn btn-warning">More Details</button></td>
+                <td scope="row" class="noExport"><button routerLink="/recruiter/applications/{{ selected.applicationid }}" class="btn btn-warning">More Details</button></td>
             </tr>
         </tbody>
     </table>

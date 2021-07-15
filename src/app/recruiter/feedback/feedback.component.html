@@ -1,0 +1,26 @@
+<app-sidenav></app-sidenav>
+<main class="content">
+    <h1 class="display-4 text-center">Recruit Desk</h1>
+    <h5>Feedbacks</h5>
+    <div class="form-group">
+        <input type="text" class="form-control w-25 d-inline" placeholder="Search Job" [(ngModel)]="searchText" (input)="searchJob()">&nbsp;
+    </div>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Job Id</th>
+                <th scope="col">Job Title</th>
+                <th scope="col">Name</th>
+                <th scope="col">Comments</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let feedback of displayFeedbacks">
+                <td>{{ feedback.jobid }}</td>
+                <td>{{ feedback.jobtitle }}</td>
+                <td>{{ feedback.username }}</td>
+                <td>{{ feedback.comments }}</td>
+            </tr>
+        </tbody>
+    </table>
+</main>

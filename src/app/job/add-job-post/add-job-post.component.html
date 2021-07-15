@@ -5,11 +5,11 @@
     <form #addJobForm="ngForm" (ngSubmit)="addJob()">
         <div class="form-group">
             <label for="jobTitle">Job Posting Headline</label>
-            <input type="text" name="jobTitle" id="jobTitle" class="form-control" [(ngModel)]="job.jobTitle" placeholder="Job Posting Headline" required autofocus>
+            <input type="text" name="jobTitle" id="jobTitle" class="form-control" [(ngModel)]="job.jobtitle" placeholder="Job Posting Headline" required autofocus>
         </div>
         <div class="form-group">
             <label for="jobType">Employment Type</label>
-            <select name="jobType" id="jobType" class="form-control" [(ngModel)]="job.jobType" required>
+            <select name="jobType" id="jobType" class="form-control" [(ngModel)]="job.jobtype" required>
                 <option value="disabled" disabled>Select an option</option>
                 <option value="Full Time">Full Time</option>
                 <option value="Part Time">Part Time</option>
@@ -21,17 +21,17 @@
         </div>
         <div class="form-group">
             <label for="skills">Key Skills</label>
-            <input type="text" name="skills" id="skills" class="form-control" [(ngModel)]="job.skills" placeholder="Skills Required" required>
+            <input type="text" name="skills" id="skills" class="form-control" [(ngModel)]="job.skills" placeholder="Eg: Java, sql" required>
         </div>
         <div class="form-group">
             <label for="">Work Experience (Years)</label>
-            <input type="number" name="minYears" id="minYears" min="0" max="30" class="form-control w-25 d-inline" [(ngModel)]="job.minYears" placeholder="Min" required>&nbsp;
-            <input type="number" name="maxYears" id="maxYears" min="0" max="30" class="form-control w-25 d-inline" [(ngModel)]="job.maxYears" placeholder="Max" required>
+            <input type="number" name="minYears" id="minYears" min="0" max="30" class="form-control w-25 d-inline" [(ngModel)]="job.minyears" placeholder="Min" required>&nbsp;
+            <input type="number" name="maxYears" id="maxYears" min="0" max="30" class="form-control w-25 d-inline" [(ngModel)]="job.maxyears" placeholder="Max" required>
         </div>
         <div class="form-group">
             <label for="">Annual Salary Range</label>
-            <input type="number" name="minSalary" id="minSalary" min="200000" class="form-control w-25 d-inline" [(ngModel)]="job.minSalary" placeholder="Min" required>&nbsp;
-            <input type="number" name="maxSalary" id="maxSalary" min="200000" class="form-control w-25 d-inline" [(ngModel)]="job.maxSalary" placeholder="Max" required>
+            <input type="number" name="minSalary" id="minSalary" min="200000" class="form-control w-25 d-inline" [(ngModel)]="job.minsalary" placeholder="Min" required>&nbsp;
+            <input type="number" name="maxSalary" id="maxSalary" min="200000" class="form-control w-25 d-inline" [(ngModel)]="job.maxsalary" placeholder="Max" required>
         </div>
         <div class="form-group">
             <label for="location">Location</label>
@@ -54,10 +54,10 @@
         </div>
         <div class="form-group">
             <label for="endDate">End Date</label>
-            <input type="date" name="endDate" id="endDate" min="{{ today }}" class="form-control w-25" [(ngModel)]="job.endDate" required>
+            <input type="date" name="endDate" id="endDate" min="{{ today }}" class="form-control w-25" [(ngModel)]="job.end_date" required>
         </div>
         <p id="errorText" class="text-danger">{{ errorText }}</p>
         <button [disabled]="addJobForm.invalid" class="btn btn-warning" id="postBtn">Post Job</button>&nbsp;
-        <button class="btn btn-primary" onclick="window.location.href='JobsMenu.html'">Back</button>
+        <button routerLink="/recruiter/openings" class="btn btn-primary">Back</button>
     </form>
 </main>

@@ -19,7 +19,6 @@ export class DashboardComponent implements OnInit {
   getStatus(){
     this.jobService.getStatus().subscribe(res => {
       this.jobOffers = res;
-      console.log(this.jobOffers);
     }, err => {
       console.log(err);
     });

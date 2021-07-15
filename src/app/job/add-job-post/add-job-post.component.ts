@@ -10,45 +10,33 @@ import { DataValidatorService } from '../../utils/data-validator.service';
 })
 export class AddJobPostComponent implements OnInit {
 
-  job = { jobTitle: null, jobType : null, 
-      description : null,
-  skills : null,
-  minYears : null,
-  maxYears : null,
-  minSalary: null ,
-  maxSalary : null,
-  location : null,
-  vacancy : null,
-  qualification : null,
-  endDate : null,
-  errorText: null,
-  today : null
+  job = { 
+    jobtitle: null, 
+    jobtype : null, 
+    description : null,
+    skills : null,
+    minyears : null,
+    maxyears : null,
+    minsalary: null ,
+    maxsalary : null,
+    location : null,
+    vacancy : null,
+    qualification : null,
+    end_date : null,
+    created_by : null
   };
+  errorText : string = '';
+  today : string = '';
 
   constructor(private jobService : JobService, private router : Router, private dataValidatorService : DataValidatorService) {
     this.today = new Date().toJSON().substr(0, 10);
   }
 
   ngOnInit(): void {
+    this.getUserName();
   }
 
   addJob(){
-    /*const job = {
-      "jobtitle": this.jobTitle,
-      "jobtype": this.jobType,
-      "description": this.description,
-      "skills": this.skills,
-      "minyears": this.minYears,
-      "maxyears": this.maxYears,
-      "minsalary": this.minSalary,
-      "maxsalary": this.maxSalary,
-      "location": this.location,
-      "vacancy": this.vacancy,
-      "qualification": this.qualification,
-      "end_date": this.endDate
-    };
-    */
-
     if(this.validateData(this.job)){
       this.jobService.addJobOffer(this.job).subscribe(res => {
         alert("Job added successfully");
@@ -77,6 +65,11 @@ export class AddJobPostComponent implements OnInit {
       isValid = false;
     }
     return isValid;
+  }
+
+  getUserName(){
+    let loginData : any = localStorage.getItem('LOGGED_IN_USER');
+    this.job.created_by = JSON.parse(loginData).name;
   }
 
 }
